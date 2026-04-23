@@ -1,0 +1,164 @@
+PS C:\Users\hp\Downloads\BigData_11_2026> & C:/Users/hp/AppData/Local/Programs/Python/Python314/python.exe "c:/Users/hp/Downloads/BigData_11_2026/svm new 2/hhhh.py"
+======================================================================
+STRATÉGIE DE VALIDATION AVEC VOS 3 FICHIERS CSV
+======================================================================
+Train set: 17754 lignes (fichier original)
+Validation set: 2219 lignes (fichier original)
+Test set: 2220 lignes (fichier original)
+
+📊 Distribution des labels:
+Train - 0: 9977, 1: 7777
+Val   - 0: 1247, 1: 972
+Test  - 0: 1248, 1: 972
+
+======================================================================
+PARAMÈTRES POUR ÉVITER L'OVERFITTING
+======================================================================
+Val   - 0: 1247, 1: 972
+Test  - 0: 1248, 1: 972
+
+======================================================================
+PARAMÈTRES POUR ÉVITER L'OVERFITTING
+======================================================================
+
+======================================================================
+PARAMÈTRES POUR ÉVITER L'OVERFITTING
+======================================================================
+======================================================================
+PARAMÈTRES POUR ÉVITER L'OVERFITTING
+======================================================================
+PARAMÈTRES POUR ÉVITER L'OVERFITTING
+======================================================================
+======================================================================
+✓ TF-IDF: max_features=5000 (réduit dimensionnalité)
+✓ TF-IDF: min_df=5 (ignore mots rares = bruit)
+✓ TF-IDF: ngram_range=(1,2) (contexte des mots)
+✓ SVM: kernel='linear' (frontière simple)
+✓ SVM: C=1.0 (régularisation équilibrée)
+
+======================================================================
+TRIAL 1: Entraînement sur TRAIN original (20,000) → Validation sur VAL original (10,000)
+======================================================================
+Train - Acc: 0.8839, F1: 0.8586, Loss: 0.7564
+Val   - Acc: 0.8193, F1: 0.7707, Loss: 0.8530
+Écart Train-Val: 0.0646
+
+======================================================================
+CRÉATION DU DATASET FUSIONNÉ (TRAIN + VALIDATION)
+======================================================================
+Dataset fusionné: 19973 lignes (Train 17754 + Val 2219)
+Distribution fusionnée - 0: 11224, 1: 8749
+
+======================================================================
+TRIALS 2 à 5: Différents pourcentages du dataset fusionné
+======================================================================
+
+--- TRIAL 2: 90% du dataset fusionné (17975 lignes) ---
+  Train: 17975 lignes
+  Val:   1998 lignes
+  Train - Acc: 0.8811, F1: 0.8542, Loss: 0.7625
+  Val   - Acc: 0.8318, F1: 0.7973, Loss: 0.8186
+  Écart Train-Val: 0.0492
+
+--- TRIAL 3: 80% du dataset fusionné (15978 lignes) ---
+  Train: 15978 lignes
+  Val:   3995 lignes
+  Train - Acc: 0.8843, F1: 0.8592, Loss: 0.7580
+  Val   - Acc: 0.8273, F1: 0.7856, Loss: 0.8334
+  Écart Train-Val: 0.0570
+
+--- TRIAL 4: 70% du dataset fusionné (13981 lignes) ---
+  Train: 13981 lignes
+  Val:   5992 lignes
+  Train - Acc: 0.8823, F1: 0.8568, Loss: 0.7583
+  Val   - Acc: 0.8211, F1: 0.7764, Loss: 0.8398
+  Écart Train-Val: 0.0612
+
+--- TRIAL 5: 60% du dataset fusionné (11983 lignes) ---
+  Train: 11983 lignes
+  Val:   7990 lignes
+  Train - Acc: 0.8848, F1: 0.8592, Loss: 0.7589
+  Val   - Acc: 0.8060, F1: 0.7594, Loss: 0.8461
+  Écart Train-Val: 0.0787
+
+✅ Trials metrics saved to 'svm_trials_metrics.csv'
+
+📊 RÉSUMÉ DES 5 TRIALS:
+   trial  train_size    tr_acc   val_acc   tr_loss  val_loss
+0      1       17754  0.883857  0.819288  0.756431  0.852996
+1      2       17975  0.881057  0.831832  0.762491  0.818648
+2      3       15978  0.884278  0.827284  0.757963  0.833387
+3      4       13981  0.882340  0.821095  0.758319  0.839798
+4      5       11983  0.884753  0.806008  0.758908  0.846050
+
+======================================================================
+ENTRAÎNEMENT DU MODÈLE FINAL SUR TOUT LE DATASET DISPONIBLE
+======================================================================
+Entraînement final sur 19973 lignes (Train + Val fusionnés)
+
+======================================================================
+ÉVALUATION FINALE SUR LE TEST SET (10,000 lignes non vues)
+======================================================================
+Test Accuracy:  0.8306
+Test Precision: 0.8670
+Test Recall:    0.7243
+Test F1-Score:  0.7892
+Test ROC-AUC:   0.9033
+
+Confusion Matrix:
+[[1140  108]
+ [ 268  704]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.81      0.91      0.86      1248
+           1       0.87      0.72      0.79       972
+
+    accuracy                           0.83      2220
+   macro avg       0.84      0.82      0.82      2220
+weighted avg       0.83      0.83      0.83      2220
+
+
+✅ Test evaluation saved to 'svm_test_evaluation.csv'
+
+======================================================================
+GÉNÉRATION DES GRAPHIQUES
+======================================================================
+✅ Learning curves saved to 'learning_curves.png'
+✅ Confusion matrix saved to 'confusion_matrix.png'
+✅ ROC-AUC curve saved to 'roc_auc_curve.png'
+✅ Overfitting gap chart saved to 'overfitting_gap.png'
+
+✅ Best model saved to 'best_model.pth'
+
+======================================================================
+RÉSUMÉ FINAL
+======================================================================
+⏱️  Temps d'entraînement final: 131.22 secondes
+
+📊 Performance sur le Test Set (10,000 textes non vus):
+   ┌─────────────────────────────────────┐
+   │ Accuracy:  0.8306  (83.06%)         │
+   │ F1-Score:  0.7892                   │
+   │ Precision: 0.8670                   │
+   │ Recall:    0.7243                   │
+   │ ROC-AUC:   0.9033                   │
+   └─────────────────────────────────────┘
+
+📁 Fichiers générés:
+   - svm_trials_metrics.csv  (métriques des 5 trials)
+   - svm_test_evaluation.csv (prédictions détaillées)
+   - learning_curves.png     (courbes d'apprentissage)
+   - confusion_matrix.png    (matrice de confusion)
+   - roc_auc_curve.png       (courbe ROC-AUC)
+   - overfitting_gap.png     (écart Train-Val)
+   - best_model.pth          (modèle sauvegardé)
+
+💡 Pour recharger le modèle plus tard:
+   import pickle
+   with open('best_model.pth', 'rb') as f:
+       model = pickle.load(f)
+   svm = model['svm_model']
+   tfidf = model['tfidf_vectorizer']
+PS C:\Users\hp\Downloads\BigData_11_2026>

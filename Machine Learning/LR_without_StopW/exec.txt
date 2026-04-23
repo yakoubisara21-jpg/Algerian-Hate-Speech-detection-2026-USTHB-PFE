@@ -1,0 +1,333 @@
+PS C:\Users\hp\Downloads\BigData_11_2026> & C:/Users/hp/AppData/Local/Programs/Python/Python314/python.exe c:/Users/hp/Downloads/BigData_11_2026/LR_without_StopW/LR_withoutStopW.py
+======================================================================
+MODÈLE LOGISTIC REGRESSION SANS TF-IDF
+======================================================================
+
+📊 Taille des datasets avant nettoyage:
+   Train: 17754 lignes
+   Validation: 2219 lignes
+   Test: 2220 lignes
+
+======================================================================
+NETTOYAGE DES VALEURS MANQUANTES
+======================================================================
+NaN dans train_df['text']: 34
+NaN dans val_df['text']: 5 
+NaN dans test_df['text']: 4
+
+📊 Taille des datasets après nettoyage:
+   Train: 17720 lignes    
+   Validation: 2214 lignes
+   Test: 2216 lignes
+
+📊 Distribution des labels après nettoyage:
+   Train - 0: 9947, 1: 7773
+   Val   - 0: 1242, 1: 972
+   Test  - 0: 1244, 1: 972
+
+======================================================================
+VECTORISATION (CountVectorizer)
+======================================================================
+✓ CountVectorizer (compte simple des mots)
+  - max_features=5000 (limite le vocabulaire)
+  - min_df=3(ignore mots rares)
+  - max_df=0.8 (ignore mots trop fréquents)
+  - ngram_range=(1,2) (mots et paires de mots)
+
+✓ Dimension des matrices:
+   Train: (17720, 5000)
+   Validation: (2214, 5000)
+   Test: (2216, 5000)
+
+======================================================================
+OPTIMISATION DES PARAMÈTRES (sur Validation Set)
+======================================================================
+📋 Grille de paramètres à tester: 112 combinaisons
+
+🔍 Recherche du meilleur modèle avec gap Train/Val ≤ 6%
+
+✅ NEW BEST! [1/112]
+   Params: C=0.01, penalty=l1, solver=liblinear, max_iter=500, class_weight=None
+   Train Acc: 0.5959, Val Acc: 0.5921, Gap: 0.0037 (≤0.06) ✓
+
+✅ NEW BEST! [5/112]
+   Params: C=0.01, penalty=l1, solver=saga, max_iter=500, class_weight=None
+   Train Acc: 0.5963, Val Acc: 0.5926, Gap: 0.0037 (≤0.06) ✓
+
+✅ NEW BEST! [9/112]
+   Params: C=0.01, penalty=l2, solver=saga, max_iter=500, class_weight=None
+   Train Acc: 0.7111, Val Acc: 0.6929, Gap: 0.0182 (≤0.06) ✓
+
+✅ NEW BEST! [10/112]
+   Params: C=0.01, penalty=l2, solver=saga, max_iter=500, class_weight=balanced
+   Train Acc: 0.7656, Val Acc: 0.7412, Gap: 0.0244 (≤0.06) ✓
+
+✅ NEW BEST! [21/112]
+   Params: C=0.1, penalty=l2, solver=saga, max_iter=500, class_weight=None
+   Train Acc: 0.8216, Val Acc: 0.7751, Gap: 0.0465 (≤0.06) ✓
+
+✅ NEW BEST! [22/112]
+   Params: C=0.1, penalty=l2, solver=saga, max_iter=500, class_weight=balanced
+   Train Acc: 0.8431, Val Acc: 0.7886, Gap: 0.0544 (≤0.06) ✓
+
+✅ NEW BEST! [26/112]
+   Params: C=0.5, penalty=l1, solver=liblinear, max_iter=500, class_weight=balanced
+   Train Acc: 0.8466, Val Acc: 0.7940, Gap: 0.0525 (≤0.06) ✓
+
+✅ NEW BEST! [30/112]
+   Params: C=0.5, penalty=l1, solver=saga, max_iter=500, class_weight=balanced
+   Train Acc: 0.8442, Val Acc: 0.7958, Gap: 0.0484 (≤0.06) ✓
+
+❌ Rejeté (gap trop grand): C=0.5, Train=0.8801, Val=0.8148, Gap=0.0653 > 0.06
+
+❌ Rejeté (gap trop grand): C=0.5, Train=0.8848, Val=0.8085, Gap=0.0763 > 0.06
+
+❌ Rejeté (gap trop grand): C=0.5, Train=0.8801, Val=0.8148, Gap=0.0653 > 0.06
+
+❌ Rejeté (gap trop grand): C=0.5, Train=0.8848, Val=0.8085, Gap=0.0763 > 0.06
+
+❌ Rejeté (gap trop grand): C=1.0, Train=0.8829, Val=0.8139, Gap=0.0690 > 0.06
+
+❌ Rejeté (gap trop grand): C=1.0, Train=0.8879, Val=0.8171, Gap=0.0708 > 0.06
+
+❌ Rejeté (gap trop grand): C=1.0, Train=0.8829, Val=0.8139, Gap=0.0690 > 0.06
+
+❌ Rejeté (gap trop grand): C=1.0, Train=0.8879, Val=0.8171, Gap=0.0708 > 0.06
+
+❌ Rejeté (gap trop grand): C=1.0, Train=0.8758, Val=0.8107, Gap=0.0651 > 0.06
+
+❌ Rejeté (gap trop grand): C=1.0, Train=0.8810, Val=0.8126, Gap=0.0685 > 0.06
+
+❌ Rejeté (gap trop grand): C=1.0, Train=0.8801, Val=0.8112, Gap=0.0689 > 0.06
+
+❌ Rejeté (gap trop grand): C=1.0, Train=0.8859, Val=0.8148, Gap=0.0711 > 0.06
+
+❌ Rejeté (gap trop grand): C=1.0, Train=0.8949, Val=0.8189, Gap=0.0760 > 0.06
+
+❌ Rejeté (gap trop grand): C=1.0, Train=0.8959, Val=0.8202, Gap=0.0757 > 0.06
+
+❌ Rejeté (gap trop grand): C=1.0, Train=0.8955, Val=0.8202, Gap=0.0753 > 0.06
+
+❌ Rejeté (gap trop grand): C=1.0, Train=0.8968, Val=0.8216, Gap=0.0752 > 0.06
+
+❌ Rejeté (gap trop grand): C=2.0, Train=0.9079, Val=0.8329, Gap=0.0750 > 0.06
+
+❌ Rejeté (gap trop grand): C=2.0, Train=0.9093, Val=0.8302, Gap=0.0791 > 0.06
+
+❌ Rejeté (gap trop grand): C=2.0, Train=0.9079, Val=0.8329, Gap=0.0750 > 0.06
+
+❌ Rejeté (gap trop grand): C=2.0, Train=0.9093, Val=0.8302, Gap=0.0791 > 0.06
+
+❌ Rejeté (gap trop grand): C=2.0, Train=0.8942, Val=0.8189, Gap=0.0754 > 0.06
+❌ Rejeté (gap trop grand): C=2.0, Train=0.9093, Val=0.8302, Gap=0.0791 > 0.06
+
+❌ Rejeté (gap trop grand): C=2.0, Train=0.8942, Val=0.8189, Gap=0.0754 > 0.06
+
+❌ Rejeté (gap trop grand): C=2.0, Train=0.8973, Val=0.8193, Gap=0.0780 > 0.06
+
+❌ Rejeté (gap trop grand): C=2.0, Train=0.9019, Val=0.8270, Gap=0.0749 > 0.06
+
+❌ Rejeté (gap trop grand): C=2.0, Train=0.9038, Val=0.8257, Gap=0.0781 > 0.06
+
+❌ Rejeté (gap trop grand): C=2.0, Train=0.9011, Val=0.8229, Gap=0.0781 > 0.06
+
+❌ Rejeté (gap trop grand): C=2.0, Train=0.9012, Val=0.8211, Gap=0.0800 > 0.06
+
+❌ Rejeté (gap trop grand): C=2.0, Train=0.9059, Val=0.8266, Gap=0.0794 > 0.06
+
+❌ Rejeté (gap trop grand): C=2.0, Train=0.9054, Val=0.8211, Gap=0.0842 > 0.06
+
+❌ Rejeté (gap trop grand): C=5.0, Train=0.9233, Val=0.8455, Gap=0.0777 > 0.06
+
+❌ Rejeté (gap trop grand): C=5.0, Train=0.9234, Val=0.8410, Gap=0.0824 > 0.06
+
+❌ Rejeté (gap trop grand): C=5.0, Train=0.9233, Val=0.8455, Gap=0.0777 > 0.06
+
+❌ Rejeté (gap trop grand): C=5.0, Train=0.9234, Val=0.8410, Gap=0.0824 > 0.06
+
+❌ Rejeté (gap trop grand): C=5.0, Train=0.9032, Val=0.8248, Gap=0.0784 > 0.06
+
+❌ Rejeté (gap trop grand): C=5.0, Train=0.9031, Val=0.8216, Gap=0.0815 > 0.06
+
+❌ Rejeté (gap trop grand): C=5.0, Train=0.9124, Val=0.8297, Gap=0.0826 > 0.06
+
+❌ Rejeté (gap trop grand): C=5.0, Train=0.9107, Val=0.8279, Gap=0.0828 > 0.06
+
+❌ Rejeté (gap trop grand): C=5.0, Train=0.9050, Val=0.8248, Gap=0.0803 > 0.06
+
+❌ Rejeté (gap trop grand): C=5.0, Train=0.9043, Val=0.8211, Gap=0.0832 > 0.06
+
+❌ Rejeté (gap trop grand): C=5.0, Train=0.9122, Val=0.8297, Gap=0.0825 > 0.06
+
+❌ Rejeté (gap trop grand): C=5.0, Train=0.9114, Val=0.8275, Gap=0.0839 > 0.06
+
+❌ Rejeté (gap trop grand): C=10.0, Train=0.9302, Val=0.8451, Gap=0.0851 > 0.06
+
+❌ Rejeté (gap trop grand): C=10.0, Train=0.9293, Val=0.8410, Gap=0.0883 > 0.06
+
+❌ Rejeté (gap trop grand): C=10.0, Train=0.9302, Val=0.8451, Gap=0.0851 > 0.06
+
+❌ Rejeté (gap trop grand): C=10.0, Train=0.9293, Val=0.8410, Gap=0.0883 > 0.06
+
+❌ Rejeté (gap trop grand): C=10.0, Train=0.9057, Val=0.8261, Gap=0.0796 > 0.06
+
+❌ Rejeté (gap trop grand): C=10.0, Train=0.9056, Val=0.8220, Gap=0.0835 > 0.06
+
+❌ Rejeté (gap trop grand): C=10.0, Train=0.9135, Val=0.8329, Gap=0.0806 > 0.06
+
+❌ Rejeté (gap trop grand): C=10.0, Train=0.9137, Val=0.8306, Gap=0.0830 > 0.06
+
+❌ Rejeté (gap trop grand): C=10.0, Train=0.9064, Val=0.8243, Gap=0.0821 > 0.06
+
+❌ Rejeté (gap trop grand): C=10.0, Train=0.9060, Val=0.8216, Gap=0.0844 > 0.06
+
+❌ Rejeté (gap trop grand): C=10.0, Train=0.9136, Val=0.8320, Gap=0.0816 > 0.06
+
+❌ Rejeté (gap trop grand): C=10.0, Train=0.9127, Val=0.8284, Gap=0.0843 > 0.06
+
+======================================================================
+MEILLEURS PARAMÈTRES TROUVÉS
+======================================================================
+C: 0.5
+Penalty: l1
+Solver: saga
+Max_iter: 500
+Class_weight: balanced
+Best Validation Accuracy: 0.7958
+
+======================================================================
+COURBES D'APPRENTISSAGE (Learning Curves by Dataset Size)
+======================================================================
+
+Test sur 10 tailles de dataset...
+  Size:  10% ( 1772 samples) | Train Acc: 0.7342 | Val Acc: 0.6599 | Train Loss: 0.5666 | Val Loss: 0.6151
+  Size:  20% ( 3544 samples) | Train Acc: 0.7714 | Val Acc: 0.7051 | Train Loss: 0.5144 | Val Loss: 0.5751
+  Size:  30% ( 5316 samples) | Train Acc: 0.7912 | Val Acc: 0.7173 | Train Loss: 0.4899 | Val Loss: 0.5497
+  Size:  40% ( 7088 samples) | Train Acc: 0.8052 | Val Acc: 0.7331 | Train Loss: 0.4668 | Val Loss: 0.5331
+  Size:  50% ( 8860 samples) | Train Acc: 0.8177 | Val Acc: 0.7547 | Train Loss: 0.4506 | Val Loss: 0.5186
+  Size:  60% (10632 samples) | Train Acc: 0.8272 | Val Acc: 0.7696 | Train Loss: 0.4327 | Val Loss: 0.5014
+  Size:  70% (12404 samples) | Train Acc: 0.8337 | Val Acc: 0.7796 | Train Loss: 0.4230 | Val Loss: 0.4903
+  Size:  80% (14176 samples) | Train Acc: 0.8388 | Val Acc: 0.7796 | Train Loss: 0.4110 | Val Loss: 0.4808
+  Size:  90% (15948 samples) | Train Acc: 0.8397 | Val Acc: 0.7855 | Train Loss: 0.4026 | Val Loss: 0.4723
+  Size: 100% (17720 samples) | Train Acc: 0.8442 | Val Acc: 0.7954 | Train Loss: 0.3943 | Val Loss: 0.4608
+
+✓ Courbes générées en 259.16 secondes
+✓ lr_learning_curves_by_size.csv sauvegardé
+
+======================================================================
+ENTRAÎNEMENT FINAL SUR LE DATASET COMPLET
+======================================================================
+✓ Modèle final entraîné sur 17720 exemples
+   ⏱️  Temps d'entraînement: 74.31 secondes
+   Train Accuracy: 0.8442
+   Val Accuracy: 0.7958
+
+======================================================================
+GÉNÉRATION DES GRAPHIQUES D'APPRENTISSAGE PAR TAILLE
+======================================================================
+✓ lr_learning_curves_by_size.png sauvegardé
+
+======================================================================
+ÉVALUATION SUR LE TEST SET
+======================================================================
+
+📊 Performance sur Test Set:
+   Accuracy:  0.8014 (80.14%)
+   Precision: 0.8537
+   Recall:    0.6605
+   F1-Score:  0.7448
+   ROC-AUC:   0.8736
+
+📊 Matrice de confusion:
+   TN: 1134, FP: 110
+   FN: 330, TP: 642
+
+📊 Classification Report:
+              precision    recall  f1-score   support
+
+    Non-Hate       0.77      0.91      0.84      1244
+        Hate       0.85      0.66      0.74       972
+
+    accuracy                           0.80      2216
+   macro avg       0.81      0.79      0.79      2216
+weighted avg       0.81      0.80      0.80      2216
+
+
+======================================================================
+SAUVEGARDE DES RÉSULTATS
+======================================================================
+✓ lr_test_evaluation.csv sauvegardé
+✓ lr_best_model.pth sauvegardé
+
+======================================================================
+GÉNÉRATION DES GRAPHIQUES ADDITIONNELS
+======================================================================
+✓ lr_confusion_matrix.png sauvegardé
+✓ lr_roc_auc_curve.png sauvegardé
+✓ lr_top_features.png sauvegardé
+
+======================================================================
+GÉNÉRATION DU GRAPHIQUE DE L'EFFET DE C
+======================================================================
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u2212' [U+2212], substituting with a dummy symbol.
+✓ lr_c_parameter_effect.png sauvegardé (avec la valeur C optimale trouvée)
+
+======================================================================
+RÉSUMÉ FINAL
+======================================================================
+
+╔══════════════════════════════════════════════════════════════╗
+║                    LOGISTIC REGRESSION                       ║
+║                         SANS TF-IDF                          ║
+╠══════════════════════════════════════════════════════════════╣
+║  Vectorizer:     CountVectorizer                            ║
+║  Max features:   3000                                       ║
+║  N-grams:        (1,2)                                      ║
+║                                                            ║
+║  Best Parameters:                                           ║
+║    C:            0.5                                      ║
+║    Penalty:      l1                                     ║
+║    Solver:       saga                                    ║
+║    Class weight: balanced                                   ║
+║                                                            ║
+║  Test Performance:                                          ║
+║    Accuracy:     0.8014 (80.14%)                             ║
+║    F1-Score:     0.7448                                      ║
+║    Precision:    0.8537                                      ║
+║    Recall:       0.6605                                      ║
+║    ROC-AUC:      0.8736                                      ║
+║                                                            ║
+║  ⏱️  Train time:   74.31 seconds                          ║
+║  ⏱️  Total time:   4724.84 seconds (78.75 min)     ║
+║  Trained on:     Train set only (17720 exemples)                ║
+╚══════════════════════════════════════════════════════════════╝
+
+
+📁 Fichiers générés:
+   - lr_param_tuning_results.csv          (résultats du tuning)
+   - lr_learning_curves_by_size.csv       (métriques par taille)
+   - lr_learning_curves_by_size.png       (courbes complètes par taille)
+   - lr_learning_curves_accuracy_loss.png (accuracy et loss)
+   - lr_test_evaluation.csv               (prédictions détaillées)
+   - lr_best_model.pth                    (modèle sauvegardé)
+   - lr_confusion_matrix.png              (matrice de confusion)
+   - lr_roc_auc_curve.png                 (courbe ROC-AUC)
+   - lr_top_features.png                  (mots les plus importants)
+   - lr_c_parameter_effect.png            (effet du paramètre C)
+
+⏱️  Temps d'exécution TOTAL: 4724.84 secondes (78.75 minutes)
+======================================================================
+TEST DU MODÈLE - DÉTECTION DE DISCOURS HAINEUX
+======================================================================
+
+✓ Modèle chargé avec succès
+  Accuracy sur test: 80.14%
+  F1-Score sur test: 0.7448
+  ROC-AUC: 0.8736

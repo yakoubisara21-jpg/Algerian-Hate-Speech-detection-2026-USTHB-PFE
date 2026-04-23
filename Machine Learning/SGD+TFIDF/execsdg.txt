@@ -1,0 +1,39 @@
+PS C:\Users\hp\Downloads\BigData_11_2026> & C:/Users/hp/AppData/Local/Programs/Python/Python314/python.exe c:/Users/hp/Downloads/BigData_11_2026/SGD+TFIDF/sgd+tfIdf.py
+Train=17720 | Val=2214 | Test=2216
+Fitting TF-IDF (char + word)...
+Feature shape: (17720, 49080)
+
+Grid search (15 passes each)...
+  log_loss         alpha=1e-04 | TrainF1=0.9351  ValF1=0.8632  Gap=0.0719  Score=0.8416
+  log_loss         alpha=3e-04 | TrainF1=0.8898  ValF1=0.8341  Gap=0.0557  Score=0.8174
+  log_loss         alpha=5e-04 | TrainF1=0.8683  ValF1=0.8160  Gap=0.0523  Score=0.8004
+  log_loss         alpha=1e-03 | TrainF1=0.8436  ValF1=0.7996  Gap=0.0440  Score=0.7864
+  modified_huber   alpha=1e-04 | TrainF1=0.9935  ValF1=0.9156  Gap=0.0779  Score=0.8922
+  modified_huber   alpha=3e-04 | TrainF1=0.9744  ValF1=0.8931  Gap=0.0813  Score=0.8688
+  modified_huber   alpha=5e-04 | TrainF1=0.9591  ValF1=0.8805  Gap=0.0786  Score=0.8570
+  modified_huber   alpha=1e-03 | TrainF1=0.9343  ValF1=0.8617  Gap=0.0726  Score=0.8399
+
+Best → {'loss': 'modified_huber', 'alpha': 0.0001}  Score=0.8922
+
+Training (batch=512)...
+  ep  1 | Train=0.9256  Val=0.8445
+  ep 10 | Train=0.9940  Val=0.9183
+
+Total training time: 2.13 seconds (0.04 minutes)
+
+Saving model and vectorizers...
+Model saved to: sgd_model.pth
+Vectorizers saved to: vec_char.pkl and vec_word.pkl
+
+Best epoch: 6 (Val F1=0.9205)
+Test → Acc=0.9224  F1=0.9209  AUC=0.9682
+v3_training_curves.png saved.
+v3_confusion_matrix.png saved.
+v3_roc_auc_curve.png saved.
+
+Total execution time: 14.96 seconds (0.25 minutes)
+
+All outputs saved:
+  PNGs: v3_training_curves.png | v3_confusion_matrix.png | v3_roc_auc_curve.png
+  CSVs: v3_train_history.csv | v3_param_search.csv | v3_test_metrics.csv | v3_test_evaluation.csv | v3_timing_info.csv
+PS C:\Users\hp\Downloads\BigData_11_2026> 
