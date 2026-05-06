@@ -1,0 +1,2 @@
+hidden_dim,n_layers,dropout_pre_lstm,dropout_lstm,dropout_post_lstm,learning_rate,weight_decay,batch_size,scheduler_factor,scheduler_patience,epochs
+112,2,0.4,0.4,0.6,0.0025231434359603983,0.0001802028127542491,64,0.5,3,25

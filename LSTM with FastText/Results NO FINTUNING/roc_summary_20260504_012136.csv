@@ -1,0 +1,2 @@
+auc,auc_interpretation,optimal_threshold,optimal_sensitivity,optimal_specificity,optimal_youden,test_accuracy_at_optimal,test_precision_at_optimal,test_recall_at_optimal,test_f1_at_optimal,scheduler_factor,scheduler_patience
+0.9298126202474415,Outstanding discrimination,0.36939204,0.8436213991769548,0.8652766639935846,0.7088980631705394,0.8864864864864865,0.8621730382293763,0.8816872427983539,0.8718209562563581,0.5,3
