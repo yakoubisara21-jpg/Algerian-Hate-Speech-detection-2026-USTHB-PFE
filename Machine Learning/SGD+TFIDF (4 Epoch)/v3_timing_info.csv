@@ -1,2 +1,0 @@
-training_time_seconds,training_time_minutes,total_execution_time_seconds,total_execution_time_minutes,n_epochs,batch_size
-0.8209238052368164,0.013682063420613606,13.695299863815308,0.22825499773025512,4,512
