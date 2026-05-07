@@ -1,0 +1,266 @@
+Current working directory: /content/drive/MyDrive/TF-IDF+LinearSVC/TF-IDF+LinearSVC-Results
+Loading datasets...
+Training set size: 19973
+Test set size: 2220
+
+Class distribution in training:
+label
+0    11224
+1     8749
+Name: count, dtype: int64
+
+Class distribution in test:
+label
+0    1248
+1     972
+Name: count, dtype: int64
+
+Vectorizing text data...
+TF-IDF shape: (19973, 10000)
+Vectorization time: 1.50 seconds
+
+Performing Grid Search with 10-fold cross-validation...
+Fitting 10 folds for each of 28 candidates, totalling 280 fits
+
+Best parameters: {'C': 5.0, 'class_weight': None, 'loss': 'squared_hinge', 'max_iter': 5000}
+Best cross-validation F1 score: 0.8705
+Grid search time: 192.99 seconds
+
+Grid search results saved to 'grid_search_results.csv'
+
+Using best LinearSVC model ...
+
+Evaluating on test set...
+
+Execution times saved to 'execution_times.csv'
+
+=== EXECUTION TIMES ===
+Vectorization: 1.50 sec (0.02 min)
+Grid Search: 192.99 sec (3.22 min)
+Inference (Test Set): 0.00 sec (0.00 min)
+Total Execution: 194.61 sec (3.24 min)
+
+=== TEST SET METRICS ===
+Accuracy: 0.8874
+F1 Score: 0.8659
+Recall: 0.8302
+Precision: 0.9047
+ROC AUC: 0.9466
+Non-Hate Precision: 0.8758
+Non-Hate Recall: 0.9319
+Non-Hate F1-Score: 0.9030
+Non-Hate Support: 1248.0000
+Hate Precision: 0.9047
+Hate Recall: 0.8302
+Hate F1-Score: 0.8659
+Hate Support: 972.0000
+Macro Avg Precision: 0.8902
+Macro Avg Recall: 0.8811
+Macro Avg F1-Score: 0.8844
+Weighted Avg Precision: 0.8884
+Weighted Avg Recall: 0.8874
+Weighted Avg F1-Score: 0.8867
+
+Test metrics with classification report saved to 'test_metrics.csv'
+Test evaluation saved to 'test_evaluation.csv'
+
+Generating learning curves...
+Training model for learning curves (this may take a moment)...
+
+Learning curves saved to 'learning_curves.png'
+Learning curves data saved to 'learning_curves_data.csv'
+CSV shape: (10, 22)
+Columns: ['train_sizes', 'accuracy_train_mean', 'accuracy_train_std', 'accuracy_test_mean', 'accuracy_test_std', 'f1_train_mean', 'f1_train_std', 'f1_test_mean', 'f1_test_std', 'precision_train_mean', 'precision_train_std', 'precision_test_mean', 'precision_test_std', 'recall_train_mean', 'recall_train_std', 'recall_test_mean', 'recall_test_std', 'loss_train_mean', 'loss_train_std', 'loss_test_mean', 'loss_test_std', 'loss_type']
+Loss curve uses: Squared Hinge Loss (selected by grid search)
+
+Generating confusion matrix...
+
+Confusion matrix saved to 'confusion_matrix.png'
+
+Generating ROC AUC curve...
+
+ROC AUC curve saved to 'roc_auc_curve.png'
+
+Saving model for later use in interface...
+Model saved as:
+  - LinearSVC_model.pkl (joblib format)
+  - LinearSVC_model.pth (pickle format)
+  - vectorizer.pkl
+  - model_metadata.pkl
+
+============================================================
+FINAL SUMMARY
+============================================================
+
+Best Parameters from Grid Search:
+  C: 5.0
+  class_weight: None
+  loss: squared_hinge
+  max_iter: 5000
+
+Best CV F1 Score: 0.8705
+
+Test Set Performance:
+  Accuracy: 0.8874
+  F1 Score: 0.8659
+  Recall: 0.8302
+  Precision: 0.9047
+  ROC AUC: 0.9466
+  Non-Hate Precision: 0.8758
+  Non-Hate Recall: 0.9319
+  Non-Hate F1-Score: 0.9030
+  Non-Hate Support: 1248.0000
+  Hate Precision: 0.9047
+  Hate Recall: 0.8302
+  Hate F1-Score: 0.8659
+  Hate Support: 972.0000
+  Macro Avg Precision: 0.8902
+  Macro Avg Recall: 0.8811
+  Macro Avg F1-Score: 0.8844
+  Weighted Avg Precision: 0.8884
+  Weighted Avg Recall: 0.8874
+  Weighted Avg F1-Score: 0.8867
+
+Execution Times:
+  Vectorization: 1.50 sec (0.02 min)
+  Grid Search: 192.99 sec (3.22 min)
+  Inference (Test Set): 0.00 sec (0.00 min)
+  Total Execution: 194.61 sec (3.24 min)
+
+Files generated:
+  📊 Performance Metrics:
+    1. grid_search_results.csv - Grid search tuning results
+    2. test_metrics.csv - Final test metrics
+    3. test_evaluation.csv - Detailed predictions per text
+    4. execution_times.csv - Training and inference times
+  📈 Visualizations:
+    5. learning_curves.png - Learning curves
+    6. confusion_matrix.png - Confusion matrix visualization
+    7. roc_auc_curve.png - ROC AUC curve with metrics
+  🤖 Model Files:
+    8. LinearSVC_model.pkl - Trained model (joblib)
+    9. LinearSVC_model.pth - Trained model (pickle format)
+    10. vectorizer.pkl - TF-IDF vectorizer
+    11. model_metadata.pkl - Model metadata
+
+============================================================
+INTERFACE READY
+============================================================
+
+You can now use the saved model in your interface with:
+
+from your_script import predict_comment
+
+# Example usage:
+result = predict_comment("Your text here")
+print(result)
+
+
+Testing interface function on first test sample:
+Text: يا خي بترونه...
+Prediction: Hate Speech
+Probability Hate: 0.6610
+
+============================================================
+SAMPLE PREDICTIONS (First 20 test samples)
+============================================================
+
+✓ Sample 1:
+   Text: يا خي بترونه
+   True: 1 | Pred: 1 | Correct: True
+   Decision Score: 0.6676
+
+✓ Sample 2:
+   Text: الله يسلمك كيفاش حتى تفكرتونا ااه
+   True: 0 | Pred: 0 | Correct: True
+   Decision Score: -0.6626
+
+✓ Sample 3:
+   Text: تفضلي سقسي فرنديقتي علاش مترده
+   True: 0 | Pred: 0 | Correct: True
+   Decision Score: -0.8286
+
+✓ Sample 4:
+   Text: بغل حركي
+   True: 1 | Pred: 1 | Correct: True
+   Decision Score: 3.0363
+
+✗ Sample 5:
+   Text: خارينا
+   True: 1 | Pred: 0 | Correct: False
+   Decision Score: -0.3612
+
+✓ Sample 6:
+   Text: بنات الفميليا الجزاءر
+   True: 0 | Pred: 0 | Correct: True
+   Decision Score: -1.3739
+
+✓ Sample 7:
+   Text: الله يبارك ما شاء الله
+   True: 0 | Pred: 0 | Correct: True
+   Decision Score: -1.9179
+
+✓ Sample 8:
+   Text: حنا ربراب ونتوما جيبو السعودين يديرو السكر
+   True: 1 | Pred: 1 | Correct: True
+   Decision Score: 1.5126
+
+✓ Sample 9:
+   Text: جاوبني كي تشوف لميساج فضلك راني مزروبا
+   True: 0 | Pred: 0 | Correct: True
+   Decision Score: -0.5800
+
+✓ Sample 10:
+   Text: الكلام الميدان ياسي حفيظ وراء الاقطار النفاق الاعتناق اعتدنه منك العارفون يعرفون...
+   True: 1 | Pred: 1 | Correct: True
+   Decision Score: 1.8782
+
+✓ Sample 11:
+   Text: روحي تعلمي لزيغوي ولا نقي نيفك وكتي علي
+   True: 1 | Pred: 1 | Correct: True
+   Decision Score: 2.1111
+
+✓ Sample 12:
+   Text: انا شريتها من قسنطينه
+   True: 0 | Pred: 0 | Correct: True
+   Decision Score: -1.0496
+
+✗ Sample 13:
+   Text: المهيم اكرمو متشبهي النساء يموتو ميكرموش النساء
+   True: 1 | Pred: 0 | Correct: False
+   Decision Score: -0.4730
+
+✓ Sample 14:
+   Text: انتوما لي تخباو مور تيليفون لنميمه يا عبد اله كونك راجل قدرتش الاقل كون بنت فامي...
+   True: 1 | Pred: 1 | Correct: True
+   Decision Score: 1.0427
+
+✓ Sample 15:
+   Text: اخويا واله ضنيت البلديه لي دشناتو ماشي الشعب علا
+   True: 0 | Pred: 0 | Correct: True
+   Decision Score: -0.6393
+
+✓ Sample 16:
+   Text: القبايل رجال هدو اقليه لي ستفادو ربراب راهم يديرو مسيره الصحافه راهي ضخم الامر
+   True: 0 | Pred: 0 | Correct: True
+   Decision Score: -0.5139
+
+✓ Sample 17:
+   Text: بركولي ليوم شريت
+   True: 0 | Pred: 0 | Correct: True
+   Decision Score: -1.8453
+
+✓ Sample 18:
+   Text: نتا مضلوم اسي ربراب من اين لك هذا معليش والله تتحاسبو عليها قااع اولاد فرنسا
+   True: 1 | Pred: 1 | Correct: True
+   Decision Score: 1.1150
+
+✓ Sample 19:
+   Text: المهم يا زيطوط تموت تدفن ثمه كي الكلب مكاش حتا لي يترحم خنتو اوطانكم
+   True: 1 | Pred: 1 | Correct: True
+   Decision Score: 1.4434
+
+✓ Sample 20:
+   Text: من الحراش واحد من لزمو ربي يهدينا ويهديهم هكذا يكونو الرجال
+   True: 1 | Pred: 1 | Correct: True
+   Decision Score: 0.2937
