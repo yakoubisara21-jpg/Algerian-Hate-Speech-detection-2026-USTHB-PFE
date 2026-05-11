@@ -1,0 +1,2 @@
+test_accuracy,test_precision,test_recall,test_f1,test_roc_auc,test_loss,cv_time_s,cv_time_min,final_train_time_s,final_train_time_min,eval_time_s,total_time_s,total_time_min,n_folds,best_fold_f1_mean,best_fold_f1_std
+0.892793,0.890426,0.861111,0.875523,0.952801,0.372772,13155.26,219.25,1407.22,23.45,14.73,14582.58,243.04,10,0.861327,0.010984
