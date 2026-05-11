@@ -1,2 +1,0 @@
-test_accuracy,test_precision,test_recall,test_f1,test_roc_auc,test_loss,training_time_s,training_time_min,eval_time_s,total_time_s,total_time_min,epochs_trained,best_epoch,total_params,trainable_params
-0.865766,0.857749,0.831276,0.844305,0.94245,0.328659,929.85,15.5,16.97,958.96,15.98,2,2,177854978,177854978

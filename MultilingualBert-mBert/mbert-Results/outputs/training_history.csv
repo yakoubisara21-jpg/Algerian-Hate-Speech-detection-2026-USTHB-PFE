@@ -1,3 +1,0 @@
-epoch,epoch_time_s,train_accuracy,train_precision,train_recall,train_f1,train_loss,val_accuracy,val_precision,val_recall,val_f1,val_roc_auc,val_loss
-1,462.0,0.72502,0.68087,0.700656,0.690621,0.529313,0.829653,0.820734,0.781893,0.800843,0.898111,0.405926
-2,466.43,0.870452,0.851947,0.852385,0.852166,0.308202,0.849031,0.854283,0.790123,0.820951,0.918659,0.404718
