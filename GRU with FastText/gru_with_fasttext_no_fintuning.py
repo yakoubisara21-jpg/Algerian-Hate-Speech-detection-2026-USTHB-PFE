@@ -1,10 +1,10 @@
 """
-GRU avec plongements FastText (entraînables) pour la classification de texte - Version finale
+GRU avec plongements FastText (NON entraînables / gelés) pour la classification de texte - Version finale
 Support: Arabizi, Arabe algérien, Anglais, Français
 Entrée: Fichier CSV kfoldsdata.csv (toutes les données pour la validation croisée) et test.csv
 Sortie: Fichier CSV d'évaluation avec prédictions et métriques + Courbe ROC (UNIQUEMENT CROSS-VALIDATION)
 OPTIMISATION DES HYPERPARAMÈTRES AVEC OPTUNA - MAXIMISATION DU F1 DE VALIDATION
-PLONGEMENTS ENTRAÎNABLES (FastText)
+PLONGEMENTS NON ENTRAÎNABLES (FastText gelés)
 EPOCHES FIXES = 10 (Pas d'arrêt précoce pour la recherche d'hyperparamètres)
 PAS DE LISSAGE DES LABELS (Perte BCE standard)
 REDUCELRONPLATEAU (Réduction adaptative du taux d'apprentissage) - MONITORE LA PERTE D'ENTRAÎNEMENT
@@ -24,7 +24,7 @@ GRAPHES SÉPARÉS: 10 ÉPOQUES COMPLET + GRAPHE JUSQU'À L'ÉPOQUE OPTIMALE (SAN
 ROC À L'ÉPOQUE OPTIMALE (SANS SEUIL, AUC SEULEMENT)
 GRAPHIQUE DE TEMPS: UN SEUL GRAPHE AVEC DEUX BARRES (ENTRAÎNEMENT FINAL + TOTAL)
 GRU UNIDIRECTIONNEL (FORCÉ) - PAS DE BIDIRECTIONNEL
-PLONGEMENTS FASTTEXT ARABES (ENTRAÎNABLES)
+PLONGEMENTS FASTTEXT ARABES (NON ENTRAÎNABLES / GELÉS)
 """
 
 import numpy as np
@@ -100,7 +100,7 @@ def set_seed(seed):
 # ══════════════════════════════════════════════════════
 
 class FastTextEmbeddings:
-    """Gestionnaire des plongements FastText arabes - ENTRAÎNABLES."""
+    """Gestionnaire des plongements FastText arabes - NON ENTRAÎNABLES (gelés)."""
 
     def __init__(self, embedding_dim=300, model_path=FASTTEXT_MODEL_PATH):
         self.embedding_dim = embedding_dim
@@ -163,7 +163,7 @@ class FastTextEmbeddings:
         if words_processed > 0:
             print(f"Mots trouvés dans FastText: {words_found}/{words_processed} "
                   f"({words_found / words_processed * 100:.1f}%)")
-        print("NOTE: Les plongements seront ENTRAÎNABLES (fine-tuning actif)")
+        print("NOTE: Les plongements seront NON ENTRAÎNABLES (gelés / frozen)")
 
         # Conversion en tenseur PyTorch une seule fois
         return torch.from_numpy(embedding_matrix).float()
@@ -313,7 +313,7 @@ def load_data(
 
 class GRUClassifier(nn.Module):
     """
-    Classifieur GRU unidirectionnel avec plongements FastText ENTRAÎNABLES.
+    Classifieur GRU unidirectionnel avec plongements FastText NON ENTRAÎNABLES (gelés).
     Le bidirectionnel est désactivé de force.
     """
 
@@ -339,8 +339,8 @@ class GRUClassifier(nn.Module):
             assert pretrained_embeddings.shape[0] == vocab_size
             assert pretrained_embeddings.shape[1] == embedding_dim
             self.embedding.weight.data.copy_(pretrained_embeddings)
-            self.embedding.weight.requires_grad = True  # ENTRAÎNABLE (fine-tuning)
-            print("Plongements FastText ENTRAÎNABLES (fine-tuning actif)")
+            self.embedding.weight.requires_grad = False  # NON ENTRAÎNABLE (gelé / frozen)
+            print("Plongements FastText NON ENTRAÎNABLES (gelés / frozen)")
 
         # ── GRU ──
         self.gru = nn.GRU(
@@ -833,7 +833,7 @@ def train_final_model(train_texts, train_labels, vocab, embedding_tensor,
     print(f"Temps d'entraînement: {training_time:.2f}s ({training_time / 60:.2f} min)")
     print("=" * 80)
 
-    # Vérification que les plongements sont bien entraînables
+    # Vérification que les plongements sont bien gelés
     print("\nVérification des plongements:")
     for name, param in model.named_parameters():
         if 'embedding' in name:
@@ -881,7 +881,7 @@ def plot_final_metrics(history, save_path):
         axes[i].set_xticks(epochs)
 
     axes[5].set_visible(False)
-    plt.suptitle('Métriques d\'entraînement final - GRU avec FastText entraînables',
+    plt.suptitle('Métriques d\'entraînement final - GRU avec FastText gelés',
                  fontsize=15, fontweight='bold', y=0.98)
     plt.tight_layout()
     plt.savefig(save_path, dpi=300, bbox_inches='tight')
@@ -981,7 +981,7 @@ def plot_confusion_matrix(true_labels, predictions, label_encoder, save_path):
                 ax=ax, annot_kws={'size': 14, 'weight': 'bold'})
     ax.set_xlabel('Prédiction', fontsize=12, fontweight='bold')
     ax.set_ylabel('Réel',       fontsize=12, fontweight='bold')
-    ax.set_title('Matrice de confusion - GRU avec FastText',
+    ax.set_title('Matrice de confusion - GRU avec FastText gelés',
                  fontsize=14, fontweight='bold')
     plt.tight_layout()
     plt.savefig(save_path, dpi=300, bbox_inches='tight')
@@ -1130,7 +1130,7 @@ def save_vectorization(vocab, embedding_tensor, label_encoder, fasttext_obj,
         'dtype':          str(embedding_tensor.dtype),
         'dim_plongement': embedding_tensor.shape[1],
         'taille_vocab':   embedding_tensor.shape[0],
-        'entrainable':    True
+        'entrainable':    False  # Plongements gelés
     }
     with open(os.path.join(save_dir, 'metadonnees_plongements.json'), 'w') as f:
         json.dump(emb_meta, f, indent=2)
@@ -1151,7 +1151,7 @@ def save_vectorization(vocab, embedding_tensor, label_encoder, fasttext_obj,
         'nb_classes':               len(label_encoder.classes_),
         'classes':                  label_encoder.classes_.tolist(),
         'forme_matrice':            list(embedding_tensor.shape),
-        'plongements_entrainables': True,
+        'plongements_entrainables': False,  # Plongements gelés
         'date_sauvegarde':          datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     }
     with open(os.path.join(save_dir, 'info_vectorisation.json'), 'w', encoding='utf-8') as f:
@@ -1161,7 +1161,7 @@ def save_vectorization(vocab, embedding_tensor, label_encoder, fasttext_obj,
     print("\n" + "=" * 70)
     print("TOUS LES COMPOSANTS DE VECTORISATION ONT ÉTÉ SAUVEGARDÉS")
     print(f"Emplacement: {save_dir}")
-    print("NOTE: Les plongements sont ENTRAÎNABLES (fine-tuning actif)")
+    print("NOTE: Les plongements sont NON ENTRAÎNABLES (gelés / frozen)")
     print("=" * 70)
 
 
@@ -1188,7 +1188,7 @@ def run_optuna(train_texts, train_labels, vocab, embedding_tensor,
     print("OBJECTIF OPTUNA: MAXIMISATION DU F1 DE VALIDATION")
     print("ÉPOQUE OPTIMALE MODÈLE FINAL: MIN PERTE VALIDATION (K-FOLD)")
     print(f"VALIDATION CROISÉE STRATIFIÉE K-FOLDS K={K_FOLDS}")
-    print("GRU UNIDIRECTIONNEL - PLONGEMENTS ENTRAÎNABLES (FastText)")
+    print("GRU UNIDIRECTIONNEL - PLONGEMENTS NON ENTRAÎNABLES (gelés / frozen)")
     print("PERTE BCE STANDARD - REDUCELROnPLATEAU (train loss)")
     print(f"{FIXED_EPOCHS} ÉPOQUES FIXES - GRADIENT CLIPPING HYPERPARAMÈTRE (0.5 - 5.0)")
     print("=" * 70)
@@ -1264,11 +1264,11 @@ def main():
     start_dt   = datetime.now()
 
     print("=" * 70)
-    print("GRU avec plongements FastText (entraînables) - Classification de texte avec OPTUNA")
+    print("GRU avec plongements FastText (NON entraînables / gelés) - Classification de texte avec OPTUNA")
     print("OBJECTIF OPTUNA: MAXIMISATION DU F1 DE VALIDATION")
     print("ÉPOQUE OPTIMALE MODÈLE FINAL: MIN PERTE VALIDATION (K-FOLD)")
     print(f"VALIDATION CROISÉE STRATIFIÉE K-FOLDS K={K_FOLDS}")
-    print("GRU UNIDIRECTIONNEL - PLONGEMENTS ENTRAÎNABLES (FastText)")
+    print("GRU UNIDIRECTIONNEL - PLONGEMENTS NON ENTRAÎNABLES (gelés / frozen)")
     print("PERTE BCE STANDARD - REDUCELROnPLATEAU (perte d'entraînement)")
     print(f"{FIXED_EPOCHS} ÉPOQUES MAX POUR LA RECHERCHE")
     print("SEUIL FIXE = 0.5 - AUC À L'ÉPOQUE OPTIMALE UNIQUEMENT")
@@ -1451,7 +1451,7 @@ def main():
         print(f"\nCONFIGURATION:")
         print(f"  Objectif Optuna:      MAXIMISATION F1 validation")
         print(f"  Époque optimale:      MIN PERTE VALIDATION (K-Fold)")
-        print(f"  Plongements:          ENTRAÎNABLES (fine-tuning)")
+        print(f"  Plongements:          NON ENTRAÎNABLES (gelés / frozen)")
         print(f"  Perte:                BCE standard")
         print(f"  Validation croisée:   Stratified K-Folds (K={K_FOLDS})")
         print(f"  Scheduler:            ReduceLROnPlateau (train loss, "
@@ -1490,7 +1490,6 @@ if __name__ == "__main__":
             import optuna
         except ImportError:
             print("Optuna non installé. Installation...")
-
             os.system("pip install optuna")
             import optuna
 
