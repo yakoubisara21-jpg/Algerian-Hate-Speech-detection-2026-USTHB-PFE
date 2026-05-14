@@ -1,2 +1,0 @@
-hidden_dim,n_layers,dropout_pre_gru,dropout_gru,dropout_post_gru,learning_rate,weight_decay,batch_size,scheduler_factor,scheduler_patience,epochs
-32,1,0.30000000000000004,0.6000000000000001,0.5,0.004818018163665791,0.00010170245918245497,128,0.6000000000000001,3,20
