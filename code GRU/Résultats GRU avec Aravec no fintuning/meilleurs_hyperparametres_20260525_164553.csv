@@ -1,0 +1,2 @@
+hidden_dim,n_layers,dropout_pre_gru,dropout_gru,dropout_post_gru,learning_rate,weight_decay,batch_size,clip_norm,epochs,best_factor,best_patience
+80,1,0.30000000000000004,0.4,0.2,0.0037459424459416737,0.0002442681707671261,32,4.929612581414789,10,0.5,3
