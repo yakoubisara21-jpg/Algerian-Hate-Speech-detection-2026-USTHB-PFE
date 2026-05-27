@@ -1,0 +1,2 @@
+temps_entrainement_sec,temps_total_sec,epoques_optimales,auc_kfold,auc_test,lr,dropout,batch_size
+1158.884021282196,13500.105306386948,2,0.964525205327093,0.9759232055239,2e-05,0.2,16
