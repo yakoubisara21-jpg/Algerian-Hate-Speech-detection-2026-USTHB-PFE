@@ -1,2 +1,0 @@
-temps_entrainement_secondes,temps_entrainement_minutes,temps_total_secondes,temps_total_minutes,epoques_optimales,seuil_utilise,horodatage,auc_kfold_epoque_optimale,essais_optuna,essais_aleatoires_optuna,norme_clip,objectif_optuna,plongements,epochs_fixes
-36.06180024147034,0.6010300040245056,2518.5754239559174,41.976257065931954,10,0.5,20260515_003422,0.696161296422881,15,5,2.1458551219519233,maximisation_f1_validation,geles_pas_de_finetuning,10
