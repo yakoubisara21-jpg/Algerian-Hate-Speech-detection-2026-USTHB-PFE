@@ -1,0 +1,2 @@
+hidden_dim,n_layers,dropout_pre_rnn,dropout_rnn,dropout_post_rnn,learning_rate,weight_decay,batch_size,clip_norm,epochs
+64,1,0.30000000000000004,0.4,0.30000000000000004,0.0009676536216777877,0.0008891715826640409,32,2.1458551219519233,10

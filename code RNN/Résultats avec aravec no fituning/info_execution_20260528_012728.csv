@@ -1,0 +1,2 @@
+temps_entrainement_secondes,temps_total_secondes,epoques_optimales,seuil_utilise,auc_test,auc_validation_info,essais_optuna,plongements
+37.6028265953064,2705.526003599167,10,0.5,0.7104985260367205,0.6964062216171697,15,geles_pas_de_finetuning
