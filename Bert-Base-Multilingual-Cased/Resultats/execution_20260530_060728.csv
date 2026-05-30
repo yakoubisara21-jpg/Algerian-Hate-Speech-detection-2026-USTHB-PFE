@@ -1,0 +1,2 @@
+modele,temps_entrainement_sec,temps_total_sec,epoques_optimales,auc_kfold,auc_test,lr,dropout,weight_decay,warmup_ratio,batch_size,max_len
+bert-base-multilingual-cased,1417.677383184433,13520.279029846191,2,0.9271475771211808,0.9451171256726812,2e-05,0.1,0.01,0.1,16,128

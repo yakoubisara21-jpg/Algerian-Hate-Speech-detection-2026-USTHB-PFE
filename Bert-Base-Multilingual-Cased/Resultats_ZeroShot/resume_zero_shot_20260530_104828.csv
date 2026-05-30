@@ -1,0 +1,2 @@
+modele,mode,nb_echantillons,nb_classes,classes,exactitude,precision,rappel,f1_score,auc,p_valeur_perm,signification,baseline_aleatoire,gain_vs_baseline,temps_eval_sec,temps_total_sec,batch_size,max_len,threshold
+bert-base-multilingual-cased,zero_shot_sans_finetuning,2220,2,"[np.int64(0), np.int64(1)]",0.4927927927927928,0.38333333333333336,0.2602880658436214,0.31004901960784315,0.4446097294766276,0.998998998998999,n.s. non significatif,0.5,-0.007207207207207189,23.45297646522522,40.93185615539551,16,128,0.5

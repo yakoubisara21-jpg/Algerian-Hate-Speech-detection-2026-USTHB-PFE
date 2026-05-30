@@ -1,0 +1,108 @@
+Appareil utilisé: cuda
+======================================================================
+Bert-Base-Multilingual-Cased Zero-Shot — Évaluation SANS fine-tuning
+Classification de texte (Darija / Hate Speech)
+Modèle: bert-base-multilingual-cased  |  MAX_LEN=128  |  BATCH=16
+======================================================================
+
+Chargement du jeu de test depuis: /content/drive/MyDrive/BigData_11_2026/data/test.csv
+Chargé: 2220 échantillons
+
+Distribution des classes:
+  0: 1248 (56.2%)
+  1: 972 (43.8%)
+
+Classes détectées: [np.int64(0), np.int64(1)]
+
+Chargement du tokenizer: bert-base-multilingual-cased
+
+Chargement de bert-base-multilingual-cased (ZERO-SHOT — SANS fine-tuning)
+Les poids pré-entraînés sont chargés, la tête de classification est aléatoire.
+Loading weights: 100%
+ 199/199 [00:00<00:00, 333.59it/s, Materializing param=bert.pooler.dense.weight]
+BertForSequenceClassification LOAD REPORT from: bert-base-multilingual-cased
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.seq_relationship.bias                  | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.predictions.bias                       | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.seq_relationship.weight                | UNEXPECTED | 
+classifier.weight                          | MISSING    | 
+classifier.bias                            | MISSING    | 
+
+Notes:
+- UNEXPECTED	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING	:those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Paramètres totaux:     177,854,978
+Paramètres entraîn.:   177,854,978
+Mode: eval() — aucun entraînement, aucune mise à jour des poids
+
+DataLoader créé: 2220 échantillons, 139 batches
+
+======================================================================
+EVALUATION ZERO-SHOT EN COURS...
+======================================================================
+Évaluation terminée en 23.45s
+
+======================================================================
+RESULTATS — mBERT Zero-Shot (sans fine-tuning)
+======================================================================
+  Exactitude: 0.4928
+  Précision:  0.3833
+  Rappel:     0.2603
+  F1-score:   0.3100
+  AUC:        0.4446
+
+  Baseline aléatoire théorique: 0.5000
+  Gain vs baseline: -0.0072
+
+======================================================================
+CLASSIFICATION REPORT (Zero-Shot):
+======================================================================
+              precision    recall  f1-score   support
+
+           0       0.54      0.67      0.60      1248
+           1       0.38      0.26      0.31       972
+
+    accuracy                           0.49      2220
+   macro avg       0.46      0.47      0.45      2220
+weighted avg       0.47      0.49      0.47      2220
+
+Rapport sauvegardé
+Matrice de confusion sauvegardée: /content/drive/MyDrive/BigData_11_2026/Bert-Base-Multilingual-Cased/Resultats_ZeroShot/confusion_matrix_zero_shot_20260530_104828.png
+Courbe ROC sauvegardée
+Distribution sauvegardée: /content/drive/MyDrive/BigData_11_2026/Bert-Base-Multilingual-Cased/Resultats_ZeroShot/distribution_classes_20260530_104828.png
+Résumé métriques sauvegardé: /content/drive/MyDrive/BigData_11_2026/Bert-Base-Multilingual-Cased/Resultats_ZeroShot/metriques_resume_20260530_104828.png
+Faux positifs: 407 | Faux négatifs: 719
+
+======================================================================
+TEST DE PERMUTATION (Zero-Shot)
+======================================================================
+Exactitude observée: 0.4928
+  Permutations: 200/999
+  Permutations: 400/999
+  Permutations: 600/999
+  Permutations: 800/999
+p-valeur: 0.9990 — n.s. non significatif
+
+======================================================================
+RESUME FINAL — Zero-Shot
+======================================================================
+Modèle:          bert-base-multilingual-cased (SANS fine-tuning)
+Échantillons:    2220
+Exactitude:      0.4928
+F1-score:        0.3100
+AUC:             0.4446
+p-valeur perm.:  0.9990 (n.s. non significatif)
+Temps total:     40.93s (0.68 min)
+Résultats dans:  /content/drive/MyDrive/BigData_11_2026/Bert-Base-Multilingual-Cased/Resultats_ZeroShot
+
+======================================================================
+TERMINE!
+======================================================================
+
+Exactitude finale: 0.4928
+AUC finale:        0.4446
