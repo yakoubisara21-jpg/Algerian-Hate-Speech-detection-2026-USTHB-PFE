@@ -1,2 +1,0 @@
-test_accuracy,test_precision,test_recall,test_f1,test_roc_auc,eval_time_s,total_time_s,random_baseline_acc,improvement_over_random
-0.492793,0.383333,0.260288,0.310049,0.444609,13.77,16.04,0.562162,-0.069369
