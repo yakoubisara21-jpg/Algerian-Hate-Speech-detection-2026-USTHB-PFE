@@ -1,2 +1,0 @@
-alpha,class_weight,eta0,l1_ratio,learning_rate,penalty
-1e-05,,0.001,0.5,optimal,elasticnet

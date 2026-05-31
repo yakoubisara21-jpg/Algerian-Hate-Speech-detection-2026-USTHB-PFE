@@ -1,2 +1,0 @@
-temps_vectorisation_sec,temps_gridsearch_sec,temps_cv_epoques_sec,temps_entrainement_final_sec,temps_inference_sec,temps_total_sec,temps_total_min,epoques_optimales,taille_mini_lot,seuil_utilise,k_folds,n_epochs_max,horodatage,objectif_gridsearch,critere_epoque_optimale,arret_anticipe
-1.2675530910491943,5952.444385528564,17.19167160987854,3.271913528442383,0.0012731552124023438,5979.509499549866,99.65849165916443,9,64,0.5,5,10,20260529_183732,"max_f1_macro (dernière époque, moyenne 5-Fold)",min_val_loss_moyen,non
