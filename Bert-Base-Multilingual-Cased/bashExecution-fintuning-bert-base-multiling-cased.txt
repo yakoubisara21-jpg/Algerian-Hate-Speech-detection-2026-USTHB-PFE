@@ -1,0 +1,277 @@
+Appareil utilisé: cuda
+======================================================================
+Bert-Base-Multilingual-Cased avec affinage complet (Full Fine-tuning)
+Classification de texte (Darija / Hate Speech)
+K-Folds K=5, 4 époques
+LR=2e-05, Dropout=0.1, WD=0.01, Warmup=10%
+======================================================================
+
+Chargement des données K-Folds depuis: /content/drive/MyDrive/BigData_11_2026/data/kfoldsdata.csv
+Chargé: 19973 échantillons
+
+Distribution des classes:
+  0: 11224 (56.2%)
+  1: 8749 (43.8%)
+
+Chargement test depuis: /content/drive/MyDrive/BigData_11_2026/data/test.csv
+
+Données chargées: 19973 samples, 2 classes
+
+======================================================================
+VALIDATION CROISEE K-FOLD (K=5), 4 EPOQUES
+Modèle: bert-base-multilingual-cased
+======================================================================
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+tokenizer_config.json: 100%
+ 49.0/49.0 [00:00<00:00, 1.22kB/s]
+vocab.txt: 100%
+ 996k/996k [00:00<00:00, 3.99MB/s]
+tokenizer.json: 100%
+ 1.96M/1.96M [00:00<00:00, 5.46MB/s]
+
+--- Fold 1/5 ---
+config.json: 100%
+ 625/625 [00:00<00:00, 27.0kB/s]
+model.safetensors: 100%
+ 714M/714M [00:08<00:00, 90.1MB/s]
+Loading weights: 100%
+ 199/199 [00:01<00:00, 158.36it/s, Materializing param=bert.pooler.dense.weight]
+BertForSequenceClassification LOAD REPORT from: bert-base-multilingual-cased
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.seq_relationship.weight                | UNEXPECTED | 
+cls.predictions.bias                       | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.seq_relationship.bias                  | UNEXPECTED | 
+classifier.weight                          | MISSING    | 
+classifier.bias                            | MISSING    | 
+
+Notes:
+- UNEXPECTED	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING	:those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Toutes les couches sont entraînables (full fine-tuning)
+Total steps: 3996, Warmup: 399 (10%)
+Epoch 1/4 - Train loss: 0.5436 acc: 0.8592 | Val loss: 0.4430 acc: 0.8170 auc: 0.8865
+Epoch 2/4 - Train loss: 0.3339 acc: 0.9337 | Val loss: 0.3645 acc: 0.8416 auc: 0.9269
+Epoch 3/4 - Train loss: 0.2131 acc: 0.9767 | Val loss: 0.3922 acc: 0.8829 auc: 0.9463
+Epoch 4/4 - Train loss: 0.1429 acc: 0.9859 | Val loss: 0.4922 acc: 0.8891 auc: 0.9502
+
+--- Fold 2/5 ---
+Loading weights: 100%
+ 199/199 [00:00<00:00, 615.61it/s, Materializing param=bert.pooler.dense.weight]
+BertForSequenceClassification LOAD REPORT from: bert-base-multilingual-cased
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.seq_relationship.weight                | UNEXPECTED | 
+cls.predictions.bias                       | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.seq_relationship.bias                  | UNEXPECTED | 
+classifier.weight                          | MISSING    | 
+classifier.bias                            | MISSING    | 
+
+Notes:
+- UNEXPECTED	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING	:those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Toutes les couches sont entraînables (full fine-tuning)
+Total steps: 3996, Warmup: 399 (10%)
+Epoch 1/4 - Train loss: 0.5402 acc: 0.8636 | Val loss: 0.4054 acc: 0.8168 auc: 0.8952
+Epoch 2/4 - Train loss: 0.3439 acc: 0.9370 | Val loss: 0.3820 acc: 0.8491 auc: 0.9313
+Epoch 3/4 - Train loss: 0.2166 acc: 0.9737 | Val loss: 0.3628 acc: 0.8821 auc: 0.9433
+Epoch 4/4 - Train loss: 0.1498 acc: 0.9836 | Val loss: 0.4824 acc: 0.8889 auc: 0.9446
+
+--- Fold 3/5 ---
+Loading weights: 100%
+ 199/199 [00:00<00:00, 581.51it/s, Materializing param=bert.pooler.dense.weight]
+BertForSequenceClassification LOAD REPORT from: bert-base-multilingual-cased
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.seq_relationship.weight                | UNEXPECTED | 
+cls.predictions.bias                       | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.seq_relationship.bias                  | UNEXPECTED | 
+classifier.weight                          | MISSING    | 
+classifier.bias                            | MISSING    | 
+
+Notes:
+- UNEXPECTED	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING	:those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Toutes les couches sont entraînables (full fine-tuning)
+Total steps: 3996, Warmup: 399 (10%)
+Epoch 1/4 - Train loss: 0.5551 acc: 0.8445 | Val loss: 0.4702 acc: 0.7895 auc: 0.8833
+Epoch 2/4 - Train loss: 0.3470 acc: 0.9397 | Val loss: 0.3950 acc: 0.8503 auc: 0.9230
+Epoch 3/4 - Train loss: 0.2211 acc: 0.9700 | Val loss: 0.3880 acc: 0.8738 auc: 0.9406
+Epoch 4/4 - Train loss: 0.1547 acc: 0.9817 | Val loss: 0.4937 acc: 0.8854 auc: 0.9447
+
+--- Fold 4/5 ---
+Loading weights: 100%
+ 199/199 [00:00<00:00, 634.52it/s, Materializing param=bert.pooler.dense.weight]
+BertForSequenceClassification LOAD REPORT from: bert-base-multilingual-cased
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.seq_relationship.weight                | UNEXPECTED | 
+cls.predictions.bias                       | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.seq_relationship.bias                  | UNEXPECTED | 
+classifier.weight                          | MISSING    | 
+classifier.bias                            | MISSING    | 
+
+Notes:
+- UNEXPECTED	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING	:those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Toutes les couches sont entraînables (full fine-tuning)
+Total steps: 3996, Warmup: 399 (10%)
+Epoch 1/4 - Train loss: 0.5704 acc: 0.8513 | Val loss: 0.4395 acc: 0.8112 auc: 0.8851
+Epoch 2/4 - Train loss: 0.3650 acc: 0.9308 | Val loss: 0.3424 acc: 0.8548 auc: 0.9269
+Epoch 3/4 - Train loss: 0.2323 acc: 0.9619 | Val loss: 0.3953 acc: 0.8746 auc: 0.9407
+Epoch 4/4 - Train loss: 0.1592 acc: 0.9803 | Val loss: 0.4618 acc: 0.8921 auc: 0.9482
+
+--- Fold 5/5 ---
+Loading weights: 100%
+ 199/199 [00:00<00:00, 612.74it/s, Materializing param=bert.pooler.dense.weight]
+BertForSequenceClassification LOAD REPORT from: bert-base-multilingual-cased
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.seq_relationship.weight                | UNEXPECTED | 
+cls.predictions.bias                       | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.seq_relationship.bias                  | UNEXPECTED | 
+classifier.weight                          | MISSING    | 
+classifier.bias                            | MISSING    | 
+
+Notes:
+- UNEXPECTED	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING	:those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Toutes les couches sont entraînables (full fine-tuning)
+Total steps: 3996, Warmup: 399 (10%)
+Epoch 1/4 - Train loss: 0.5470 acc: 0.8631 | Val loss: 0.4143 acc: 0.8137 auc: 0.8937
+Epoch 2/4 - Train loss: 0.3331 acc: 0.9457 | Val loss: 0.3651 acc: 0.8538 auc: 0.9276
+Epoch 3/4 - Train loss: 0.2149 acc: 0.9696 | Val loss: 0.5272 acc: 0.8653 auc: 0.9280
+Epoch 4/4 - Train loss: 0.1456 acc: 0.9836 | Val loss: 0.5681 acc: 0.8813 auc: 0.9368
+
+Epoque optimale: 2
+AUC moyenne (K-Fold): 0.9271
+Graphique sauvegardé: /content/drive/MyDrive/BigData_11_2026/Bert-Base-Multilingual-Cased/Resultats/kfold_metriques_complet_20260531_110734.png
+Graphique sauvegardé: /content/drive/MyDrive/BigData_11_2026/Bert-Base-Multilingual-Cased/Resultats/kfold_metriques_optimal_20260531_110734.png
+
+AUC moyen K-Fold: 0.9271
+Epoques optimales: 2
+
+======================================================================
+ENTRAINEMENT FINAL — 2 EPOQUES
+Modèle: bert-base-multilingual-cased
+Sur 19973 échantillons
+======================================================================
+Loading weights: 100%
+ 199/199 [00:00<00:00, 630.00it/s, Materializing param=bert.pooler.dense.weight]
+BertForSequenceClassification LOAD REPORT from: bert-base-multilingual-cased
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.seq_relationship.weight                | UNEXPECTED | 
+cls.predictions.bias                       | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.seq_relationship.bias                  | UNEXPECTED | 
+classifier.weight                          | MISSING    | 
+classifier.bias                            | MISSING    | 
+
+Notes:
+- UNEXPECTED	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING	:those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Toutes les couches sont entraînables (full fine-tuning)
+Total steps: 2498, Warmup: 249 (10%)
+Epoch 1/2 — Loss: 0.5067 | Acc: 0.8838 | F1: 0.8599
+Epoch 2/2 — Loss: 0.2920 | Acc: 0.9391 | F1: 0.9282
+
+Entraînement terminé en 1234.23s (20.57 min)
+Writing model shards: 100%
+ 1/1 [00:12<00:00, 12.41s/it]
+Modèle sauvegardé: /content/drive/MyDrive/BigData_11_2026/Bert-Base-Multilingual-Cased/modele_final_20260531_110734
+Graphique sauvegardé: /content/drive/MyDrive/BigData_11_2026/Bert-Base-Multilingual-Cased/Resultats/metriques_finales_20260531_110734.png
+
+======================================================================
+EVALUATION SUR TEST
+======================================================================
+
+Performance sur test:
+  Exactitude: 0.8793
+  Précision:  0.8877
+  Rappel:     0.8292
+  F1-score:   0.8574
+
+======================================================================
+CLASSIFICATION REPORT:
+======================================================================
+              precision    recall  f1-score   support
+
+           0       0.87      0.92      0.90      1248
+           1       0.89      0.83      0.86       972
+
+    accuracy                           0.88      2220
+   macro avg       0.88      0.87      0.88      2220
+weighted avg       0.88      0.88      0.88      2220
+
+Rapport sauvegardé
+
+======================================================================
+AUC SUR LE JEU DE TEST
+======================================================================
+AUC: 0.9451
+Seuil optimal (Youden): 0.3377
+AUC test: 0.9451
+Faux positifs: 102
+Faux négatifs: 166
+Toutes les prédictions sauvegardées: 2220 lignes
+Matrice de confusion sauvegardée
+
+======================================================================
+TEST DE PERMUTATION
+======================================================================
+Exactitude observée: 0.8793
+  Permutations: 100/999
+  Permutations: 200/999
+  Permutations: 300/999
+  Permutations: 400/999
+  Permutations: 500/999
+  Permutations: 600/999
+  Permutations: 700/999
+  Permutations: 800/999
+  Permutations: 900/999
+
+p-valeur: 0.0000 — *** hautement significatif
+
+======================================================================
+RESUME FINAL
+======================================================================
+Modèle:          bert-base-multilingual-cased
+Epoques finales: 2
+Exactitude test: 0.8793
+F1-score test:   0.8574
+AUC test:        0.9451
+Temps total:     11746.36s (195.77 min)
+p-valeur perm.:  0.0000
+
+======================================================================
+TERMINE!
+======================================================================
+
+Temps total: 11746.36s
+AUC K-Fold: 0.9271
+AUC Test:   0.9451
