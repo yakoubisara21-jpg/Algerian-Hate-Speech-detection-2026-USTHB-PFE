@@ -1,0 +1,158 @@
+Current working directory: /content/drive/MyDrive/TF-IDF+LinearSVC/Results-TF-IDF+LinearSVC
+Loading datasets...
+Training set size: 19934
+Test set size: 2216
+
+Class distribution in training:
+label
+0    11189
+1     8745
+Name: count, dtype: int64
+
+Class distribution in test:
+label
+0    1244
+1     972
+Name: count, dtype: int64
+
+Vectorizing text data...
+TF-IDF shape: (19934, 10000)
+Vectorization time: 0.61 seconds
+
+Performing Grid Search with 5-fold cross-validation...
+Fitting 5 folds for each of 28 candidates, totalling 140 fits
+Best hyperparameters saved to 'meilleurs_hyperparametres.csv'
+
+Best parameters: {'C': 5.0, 'class_weight': None, 'loss': 'squared_hinge', 'max_iter': 5000}
+Best cross-validation F1 score: 0.8686
+Grid search time: 91.01 seconds
+
+Grid search results saved to 'grid_search_results.csv'
+
+Using best LinearSVC model ...
+
+Evaluating on test set...
+
+Temps d'exécution sauvegardés dans 'temps_execution.csv'
+
+=== TEMPS D'EXÉCUTION ===
+  Vectorisation: 0.61 sec (0.01 min)
+  Recherche hyperparamètres: 91.01 sec (1.52 min)
+  Inférence (ensemble de test): 0.00 sec (0.00 min)
+  Exécution totale: 92.69 sec (1.54 min)
+
+=== MÉTRIQUES SUR L'ENSEMBLE DE TEST ===
+  Exactitude: 0.8858
+  F1-Score: 0.8633
+  Rappel: 0.8220
+  Précision: 0.9090
+  ROC AUC: 0.9489
+
+Métriques de test sauvegardées dans 'test_metrics.csv'
+              precision    recall  f1-score   support
+
+           0       0.87      0.94      0.90      1244
+           1       0.91      0.82      0.86       972
+
+    accuracy                           0.89      2216
+   macro avg       0.89      0.88      0.88      2216
+weighted avg       0.89      0.89      0.89      2216
+
+Rapport de classification sauvegardé dans 'classification_report.csv'
+Évaluation de test sauvegardée dans 'test_evaluation.csv'
+Faux positifs: 80 → faux_positifs_20260601_034813.csv
+Faux négatifs: 173 → faux_negatifs_20260601_034813.csv
+
+======================================================================
+TEST DE PERMUTATION
+======================================================================
+Exactitude observée: 0.8858
+  Permutations: 100/999
+  Permutations: 200/999
+  Permutations: 300/999
+  Permutations: 400/999
+  Permutations: 500/999
+  Permutations: 600/999
+  Permutations: 700/999
+  Permutations: 800/999
+  Permutations: 900/999
+
+p-valeur: 0.0000 - *** hautement significatif
+Résultats sauvegardés → test_permutation_20260601_034813.csv
+Graphique sauvegardé → test_permutation_20260601_034813.png
+
+Génération des courbes d'apprentissage...
+Entraînement du modèle pour les courbes d'apprentissage...
+Graphique sauvegardé : courbes_apprentissage_20260601_034813.png
+Données CSV sauvegardées : courbes_apprentissage_donnees_20260601_034813.csv
+Type de perte utilisé : Perte Hinge Quadratique (sélectionné par la recherche)
+
+Generating confusion matrix...
+Matrice de confusion → matrice_confusion_20260601_034813.png
+
+Generating ROC AUC curve...
+Courbe ROC AUC → roc_auc_20260601_034813.png
+
+Saving model...
+Modèle sauvegardé :
+  - LinearSVC_model.pkl
+  - LinearSVC_model.pth
+  - vectorizer.pkl
+  - model_metadata.pkl
+
+======================================================================
+RÉSUMÉ FINAL
+======================================================================
+
+Meilleurs paramètres (GridSearch):
+  C: 5.0
+  class_weight: None
+  loss: squared_hinge
+  max_iter: 5000
+
+Meilleur F1 macro (validation croisée) : 0.8686
+
+Performances sur l'ensemble de test :
+  Exactitude: 0.8858
+  F1-Score: 0.8633
+  Rappel: 0.8220
+  Précision: 0.9090
+  ROC AUC: 0.9489
+
+Temps d'exécution :
+  Vectorisation: 0.61 sec (0.01 min)
+  Recherche hyperparamètres: 91.01 sec (1.52 min)
+  Inférence (ensemble de test): 0.00 sec (0.00 min)
+  Exécution totale: 92.69 sec (1.54 min)
+
+p-valeur permutation: 0.0000 (*** hautement significatif)
+
+Fichiers générés dans /content/drive/MyDrive/TF-IDF+LinearSVC/Results-TF-IDF+LinearSVC :
+  📊 Métriques :
+    - grid_search_results.csv
+    - meilleurs_hyperparametres.csv
+    - test_metrics.csv
+    - test_evaluation.csv
+    - classification_report.csv
+    - temps_execution.csv
+    - courbes_apprentissage_donnees_20260601_034813.csv
+    - faux_positifs_20260601_034813.csv
+    - faux_negatifs_20260601_034813.csv
+  📈 Visualisations :
+    - courbes_apprentissage_20260601_034813.png
+    - matrice_confusion_20260601_034813.png
+    - roc_auc_20260601_034813.png
+  🤖 Modèle :
+    - LinearSVC_model.pkl
+    - LinearSVC_model.pth
+    - vectorizer.pkl
+    - model_metadata.pkl
+
+======================================================================
+PIPELINE TERMINÉ AVEC SUCCÈS!
+======================================================================
+
+Test de predict_comment sur le premier échantillon de test :
+  Texte      : خي بترونه...
+  Prédiction : Discours Haineux
+  P(haineux) : 0.6680
