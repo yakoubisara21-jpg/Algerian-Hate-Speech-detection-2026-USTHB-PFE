@@ -1,2 +1,0 @@
-temps_entrainement_secondes,temps_total_secondes,epoques_optimales,seuil_utilise,auc_test,essais_optuna,plongements
-89.43887591362,7634.6784789562225,10,0.5,0.9697994156906194,15,fasttext+aravec_entrainables_dziribert_finetuned
