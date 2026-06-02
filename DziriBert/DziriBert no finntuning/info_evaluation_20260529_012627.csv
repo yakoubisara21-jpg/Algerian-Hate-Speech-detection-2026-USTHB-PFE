@@ -1,0 +1,2 @@
+modele,seuil,max_len,batch_size,nb_echantillons_test,exactitude,precision,rappel, f1_score,timestamp,temps_evaluation_sec,temps_evaluation_min,auc
+alger-ia/dziribert,0.5,128,16,2220,0.41396396396396395,0.38325053229240597,0.5555555555555556,0.45359092818143637,20260529_012627,16.946866273880005,0.2824477712313334,0.3975554302521894
