@@ -1,0 +1,2 @@
+best_factor,hidden_dim,n_layers,mlp_dropout,dropout_pre_gru,dropout_gru,dropout_post_gru,clf_hidden,clf_dropout,learning_rate,weight_decay,batch_size,clip_norm,epochs
+0.4,96,2,0.1,0.5,0.2,0.5,256,0.1,5.12878198709283e-05,0.004274869455295219,128,0.5929453342787633,10
